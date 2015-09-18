@@ -17,7 +17,7 @@ Arrays were processed using the 'oligo' [Carvalho B. S., and Irizarry, R. A. (20
 
 
 
-
+## Next-gen sequencing
 
 ## Variant calling methods
 
@@ -37,8 +37,6 @@ Due to these challenges we improved our ability to parallelize these samples by:
 - Using distributed filesystems to help distribute network and IO traffic. We're currently exploring GlusterFS (http://www.gluster.org/).
 
 The second significant challenge was machine memory, which becomes limiting during variant calling steps with multiple samples. The major challenge is that traditional cluster management systems manage compute core usage but not memory, so computing on shared machines can become problematic when other memory-intensive jobs get scheduled together. There are both technical solutions, like grabbing entire machines for processing to avoid other scheduled jobs, and algorithmic solutions, like Broad's ReduceReads https://www.broadinstitute.org/gatk/gatkdocs/org_broadinstitute_sting_gatk_walkers_compression_reducereads_ReduceReads.html).
-
-Data Analysis Methods
 
 
 
@@ -170,10 +168,6 @@ Likely transcription factors (TF) associated with differentially expressed genes
 
 
 ## RRBS
-
-
-
-RRBS methods
 
 HiSeq Illumina sequencing will be performed on our behalf by ###. All samples will be indexed so that ### RRBS pools can be run on a single lane of an 8-laned Illumina flow cell, providing an estimated ### million reads per sample.
 
