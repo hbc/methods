@@ -19,7 +19,7 @@ Arrays were processed using the 'oligo' [Carvalho B. S., and Irizarry, R. A. (20
 
 ## Next-gen sequencing
 
-## Variant calling methods
+### Variant calling methods
 
 Sequencing data will be obtained, tested for quality and trimmed as before. Filtered reads will be aligned with Novoalign (http://www.novocraft.com/main/index.php) before running a standard GATK best practice workflow (http://gatkforums.broadinstitute.org/discussion/1186/best-practice-variant-detection-with-the-gatk-v4-for-release-2-0) including deduplication, base recalibration and realignment. Variants will be called using an ensembl approach with the GATK UnifiedGenotyper, GATK Haplotype caller and FreeBayes on [[all samples simultaneously | samples grouped by family]]. Combining results in this way from multiple callers can increase overall call confidence (see http://bcbio.wordpress.com/2013/02/06/an-automated-ensemble-method-for-combining-and-evaluating-genomic-variants-from-multiple-callers/). We annotate variant calls using SnpEff (http://snpeff.sourceforge.net/) to predict variant effects, and gemini (http://snpeff.sourceforge.net/) to produce a readily queried database with annotations from external sources such as dbSNP, ENCODE, KEGG and ClinVar. 
 
@@ -40,12 +40,12 @@ The second significant challenge was machine memory, which becomes limiting duri
 
 
 
-## Cancer variant calling
+### Cancer variant calling
 
 Sequencing reads will be assed for quality [http://www.bioinformatics.babraham.ac.uk/projects/fastqc/], trimmed and filtered [https://code.google.com/p/cutadapt/], and aligned against the reference genome using Novoalign [http://www.novocraft.com/] before being processed following the GATK's best practice workflow (base recalibration, realignment, and variant calling using the UnifiedGenotyper). In addition, we will apply VarScan2 [Koboldt DC, Zhang Q, Larson DE, Shen D, McLellan MD, Lin L, Miller CA, Mardis ER, Ding L, & Wilson RK (2012). VarScan 2: Somatic mutation and copy number alteration discovery in cancer by exome sequencing. Genome Research PMID: 22300766] to determine somatic status of detected variants. All variants will be annotated using snpEff [ "A program for annotating and predicting the effects of single nucleotide polymorphisms, SnpEff: SNPs in the genome of Drosophila melanogaster strain w1118; iso-2; iso-3.", Cingolani P, Platts A, Wang le L, Coon M, Nguyen T, Wang L, Land SJ, Lu X, Ruden DM. Fly (Austin). 2012 Apr-Jun;6(2):80-92. PMID: 22728672] before downstream analysis.
 
 
-## RNA-Seq
+### RNA-Seq
 
 HiSeq Illumina sequencing will be performed on our behalf by ###. All samples will be indexed so that pools can be run across ### lanes of an 8-laned Illumina flow cell, providing an estimated 20-30 million single-end reads per sample.
 
@@ -69,7 +69,7 @@ RNAseq results will be validated by qRT-PCR on a subset of genes. Lists of diffe
 Finally, sample gene expression results will be compared against the Broad’s Connectity Map using gCMAP [http://www.bioconductor.org/packages/devel/bioc/html/gCMAP.html] to identify drug perturbations resulting in highly correlated (or anti-correlated) gene expression changes for subequent validation. We will also explore expanding the drug perturbation database with the LINCS L1000 data [http://lincscloud.org/l1000-data/], subsetting differentially expressed gene lists accordingly.
 
 
-## Exome Seq (normal or cancer)
+### Exome Seq (normal or cancer)
 
 To analyze small variants (SNPs) and indels in exome sequencing samples, we
 employ a suite of existing software packages combined with methodology for
@@ -122,7 +122,7 @@ into downstream analysis.
 
 
 
-## mRNA
+### mRNA
 
 RNA quality will be performed using the Agilent Bioanalyzer (Agilent, Santa Clara, CA). Transcriptional profiling using the ### array will be performed at ###. All data analysis will be performed using the BioConductor framework [1]. Array quality will be assessed using the arrayQualityMetrics package [2], batch adjusted [3], normalized and summarized using Robust Multiarray Averaging (RMA) [4] and tested for genes with significant differential expression using limma [5].
 
@@ -133,7 +133,7 @@ RNA quality will be performed using the Agilent Bioanalyzer (Agilent, Santa Clar
 [5]: Smyth, G. K. (2005). Limma: linear models for microarray data. In: Bioinformatics and Computational Biology Solutions using R and Bioconductor, R. Gentleman, V. Carey, S. Dudoit, R. Irizarry, W. Huber (eds.), Springer, New York, pages 397-420.
 
 
-## miRNA
+### miRNA
 
 Aligned read data will then be postprocessed with the miRDeep2 [Friedländer, Marc R, Sebastian D Mackowiak, Na Li, Wei Chen, and Nikolaus Rajewsky. “miRDeep2 Accurately Identifies Known and Hundreds of Novel microRNA Genes in Seven Animal Clades..” Nucleic Acids Research 40, no. 1 (January 1, 2012): 37–52.], an algorithm that assesses the fit of sequenced RNAs to a biological model of miRNA generation and correct folding. We expect this step to significantly reduce the false-positive rate compared to a simpler analysis of clustered read positions. 
 
@@ -141,12 +141,12 @@ While we expect miRNA to be the most abundant contributor to our sequence data w
 
 To correct for underestimation of miRNA expression when using the whole genome background -- due to the higher ambiguity of mapped reads [REF#68] -- we will assess differentially expression of identified miRNA candidates and other sRNA independently from the first step, again using DESeq or DSS as described above.
 
-## miRNA/mRNA integration
+### miRNA/mRNA integration
 
 To comprehensively integrate the interaction of differentially expressed genes and miRNAs we will use miRTrail [ Laczny, Cedric, Petra Leidinger, Jan Haas, Nicole Ludwig, Christina Backes, Andreas Gerasch, Michael Kaufmann, et al. “miRTrail--a Comprehensive Webserver for Analyzing Gene and miRNA Patterns to Enhance the Understanding of Regulatory Mechanisms in Diseases..” BMC Bioinformatics 13 (2012): 36. doi:10.1186/1471-2105-13-36.] which integrates information on 20.000 genes and almost 1.000 miRNAs. A secondary screen will be performed using MMIA [Nam, Seungyoon, Meng Li, Kwangmin Choi, Curtis Balch, Sun Kim, and Kenneth P Nephew. “MicroRNA and mRNA Integrated Analysis (MMIA): a Web Tool for Examining Biological Functions of microRNA Expression.” Nucleic Acids Research 37, no. Web Server issue (July 1, 2009): W356–62. doi:10.1093/nar/gkp294.], an algorithm incorporating three miRNA prediction algorithms (TargetScan, PITA and PicTar) into the mRNA expression analysis. 
 
 
-## ChIP-Seq
+### ChIP-Seq
 
 ChIP-seq data quality will be evaluated using FASTQC [6], and if required filtering and trimming of reads will be performed with Cutadapt [7]. High quality reads will be mapped to the current mouse genome build using Bowtie [8]. We will use MACS2 [9] to call peaks on unique reads only and assess peak quality using phantompeakqualtools, developed as part of the ModENCODE project [10]. Likely peak artifacts will be filtered out using the ModENCODE blacklist. To assess the reproducibility of peaks across replicates, we will run samples through the IDR pipeline [11,12]. For replicates which show high concordance from the IDR analysis, overlapping regions will be used for downstream analysis. Binding sites will be evaluated using the MEME [13] suite of tools for motif discovery and motif enrichment. Functional enrichment of binding site targets will be explored with GREAT [14].
 
@@ -160,14 +160,14 @@ ChIP-seq data quality will be evaluated using FASTQC [6], and if required filter
 [13]: Bailey, Timothy L, Mikael Bodén, Fabian A Buske, Martin Frith, Charles E Grant, Luca Clementi, Jingyuan Ren, Wilfred W Li, and William S Noble. “MEME SUITE: Tools for Motif Discovery and Searching..” Nucleic Acids Research 37, no. Web Server issue: W202–8. doi:10.1093/nar/gkp335.
 [14]: McLean, Cory Y, Dave Bristor, Michael Hiller, Shoa L Clarke, Bruce T Schaar, Craig B Lowe, Aaron M Wenger, and Gill Bejerano. “GREAT Improves Functional Interpretation of Cis-Regulatory Regions..” Nature Biotechnology 28, no. 5: 495–501. doi:10.1038/nbt.1630.
 
-## TF
+### TF
 
 Likely transcription factors (TF) associated with differentially expressed genes will be identified using oPOSSUM-3[1], a web-accessible software system for identification of over-represented transcription factor binding sites (TFBS) and TFBS families in DNA sequences of co-expressed genes.
 
 [1]: Kwon, Andrew T, David J Arenillas, Rebecca Worsley Hunt, and Wyeth W Wasserman. “oPOSSUM-3: Advanced Analysis of Regulatory Motif Over-Representation Across Genes or ChIP-Seq Datasets..” G3 (Bethesda, Md.) 2, no. 9 (September 2012): 987–1002. doi:10.1534/g3.112.003202.
 
 
-## RRBS
+### RRBS
 
 HiSeq Illumina sequencing will be performed on our behalf by ###. All samples will be indexed so that ### RRBS pools can be run on a single lane of an 8-laned Illumina flow cell, providing an estimated ### million reads per sample.
 
