@@ -197,20 +197,28 @@ Illumina sequence quality will be surveyed using FastQC [Andrews, S.: FastQC htt
 
 ### inDrop RNA-seq
 Sequencing via the inDrop method (XXX link for inDrop) will be performed by the
-(XXX name of sequencing core) core facility. A total of XXX cells per sample
-will be captured. Cells will be rigorously quality controlled for viability
-prior to sequencing.
+Single Cell Core at HMS. Prior to library preparation, cells will be rigorously
+quality controlled for viability. A total of XXX cells per sample will be
+captured, encapsulated in hydrogel and libraries will be prepared using a
+modified version of the protocol outlined previously [Klein AM, Mazutis L,
+Akartuna I, Tallapragada N, Veres A, Li V, Peshkin L, Weitz DA, Kirschner MW
+(2015). Droplet Barcoding for Single-Cell Transcriptomics Applied to Embryonic
+Stem Cells.]. Each cell will be marked by a unique cellular barcode and all
+transcript fragments for each cell will have a universal molecular identifier
+(UMI) attached. Sequencing of the inDrop libraries will be performed at
+(XXX sequencing core), with a target of (XXX) reads per sample.
 
-Post sequencing, cellular barcodes will be used to assign reads to each cell and
-the universal molecular identifier (UMI) for each read will be identified. The
+Post sequencing, reads will be assigned to each cell via identifying the
+cellular barcodes, and the UMI will be extracted from each read. The
 distribution of reads per cell will be used to identify a cutoff for total reads
-sequence that marks cells that were sequenced. Reads from cells passing the
-filter will be alisnged to (XXX genome/build) using Rapmap and counts of reads
-per transcript per unique UMI will be generated. Reads will also be aligned to
-(XXX genome/build) using kallisto in single-cell mode to generate transcript
-compatibility counts (TCC).
+sequenced that is the hallmark of high quality RNA from a cell. Reads from cells
+passing the quality filter will be aligned to (XXX genome/build) using Rapmap
+and counts of reads per transcript per unique UMI will be generated for each
+cell. Reads will also be aligned to (XXX genome/build) using kallisto in
+single-cell mode to generate transcript compatibility counts (TCC) for
+each cell.
 
-Heterogeneity analysis of the UMI disambiguated counts per gene will be
+Heterogeneity analysis of the UMI disambiguated counts per gene per cell will be
 performed using a combination of the R packages Seurat, SCDE and PAGODA.
 Briefly, cells will be clustered via PCA or t-SNE and stable groups will be
 identified. These groups will be identified from a training set of samples, and
