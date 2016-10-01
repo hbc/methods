@@ -194,3 +194,30 @@ HiSeq Illumina sequencing will be performed on our behalf by ###. All samples wi
 
 Illumina sequence quality will be surveyed using FastQC [Andrews, S.: FastQC http://www.bioinformatics.babraham.ac.uk/projects/fastqc/] to ensure library generation and sequencing are suitable for further analysis. Particular attention will be paid to per base sequence quality, overrepresented sequences (an indicator of adapter contamination) and the per base cytosine content (an indicator of conversion efficiency). Using a bioinformatics pipeline constructed in bpipe [Sadedin, S. P., Pope, B., & Oshlack, A. (2012). Bpipe: a tool for running and managing bioinformatics pipelines. Bioinformatics (Oxford, England), 28(11), 1525–1526. doi:10.1093/bioinformatics/bts167], sequences will then be trimmed, aligned and their cytosine methylation status determined. Adapters will be removed and low quality bases (<25–30 Phred quality scores) adaptively trimmed from reads with Trim Galore [Krueger F: Trim Galore!. http://www.bioinformatics.babraham.ac.uk/projects/trim_galore/]. In addition, bases containing a cytosine artificially introduced in the end-repair step during the MspI-RRBS library preparation will be removed. Sequence quality will be re-assessed with FastQC and trimming parameters adjusted if necessary. Trimmed reads will be aligned to the appropriate reference genome with Bismark [Krueger, F., & Andrews, S. R. (2011). Bismark: a flexible aligner and methylation caller for Bisulfite-Seq applications. Bioinformatics (Oxford, England), 27(11), 1571–1572. doi:10.1093/bioinformatics/btr167], a ‘three-letter’ bisulfite aligner based on the gapped aligner Bowtie2 [Langmead, B., & Salzberg, S. L. (2012). Fast gapped-read alignment with Bowtie 2. Nature Methods, 9(4), 357–359. doi:10.1038/nmeth.1923]. Aligned reads will be automatically trimmed with BSeQC to remove nucleotides subject to further technical biases that can result in inaccurate methylation estimation, such as higher bisulfite conversion failure at the 5’ end of reads [Lin, X., Lin, X., Sun, D., Sun, D., Rodriguez, B., Rodriguez, B., et al. (2013). BSeQC: quality control of bisulfite sequencing experiments. Bioinformatics, 29(24), 3227–3229. doi:10.1093/bioinformatics/btt548]. Cytosine methylation will be determined with Bis-SNP [Liu, Y., Siegmund, K. D., Laird, P. W., & Berman, B. P. (2012). Bis-SNP: Combined DNA methylation and SNP calling for Bisulfite-seq data. Genome Biology, 13(7), R61. doi:10.1186/gb–2012–13–7-r61
 ], a GATK [McKenna, A., Hanna, M., Banks, E., Sivachenko, A., Cibulskis, K., Kernytsky, A., et al. (2010). The Genome Analysis Toolkit: A MapReduce framework for analyzing next-generation DNA sequencing data. Genome Research, 20(9), 1297–1303. doi:10.1101/gr.107524.110] based framework capable of simultaneous genotyping and DNA methylation estimation; methylation at non-CpG cytosines will be used to assess conversion rates. DNA methylation will be validated by bisulfite PCR or pyrosequencing on a subset of CpGs.
+
+### inDrop RNA-seq
+Sequencing via the inDrop method (XXX link for inDrop) will be performed by the
+(XXX name of sequencing core) core facility. A total of XXX cells per sample
+will be captured. Cells will be rigorously quality controlled for viability
+prior to sequencing.
+
+Post sequencing, cellular barcodes will be used to assign reads to each cell and
+the universal molecular identifier (UMI) for each read will be identified. The
+distribution of reads per cell will be used to identify a cutoff for total reads
+sequence that marks cells that were sequenced. Reads from cells passing the
+filter will be alisnged to (XXX genome/build) using Rapmap and counts of reads
+per transcript per unique UMI will be generated. Reads will also be aligned to
+(XXX genome/build) using kallisto in single-cell mode to generate transcript
+compatibility counts (TCC).
+
+Heterogeneity analysis of the UMI disambiguated counts per gene will be
+performed using a combination of the R packages Seurat, SCDE and PAGODA.
+Briefly, cells will be clustered via PCA or t-SNE and stable groups will be
+identified. These groups will be identified from a training set of samples, and
+the stability of the groups will be confirmed by projecting new samples using
+the weights calculated from the training samples. Marker genes for each stable
+group will be identified by fitting a classifier using each gene alone and
+calculating the efficacy of the classifier with that one gene. Differential
+expression between specific groups will be performed using SCDE to account for
+the technical dropouts in single-cell RNA-seq. Pathways differing between each
+group will be performed using PAGODA.
