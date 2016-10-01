@@ -209,17 +209,19 @@ transcript fragments for each cell will have a universal molecular identifier
 (XXX sequencing core), with a target of (XXX) reads per sample.
 
 Post sequencing, reads will be assigned to each cell via identifying the
-cellular barcodes, and the UMI will be extracted from each read. The
+cellular barcodes, and the UMI will be extracted from each read
+[Power Analysis of Single Cell RNA‐Sequencing Experiments View ORCID ProfileValentine Svensson, Kedar N Natarajan, Lam-Ha Ly, Ricardo J Miragaia, Charlotte Labalette, Iain C Macaulay, Ana Cvejic, Sarah A Teichmann
+doi: http://dx.doi.org/10.1101/073692]. The
 distribution of reads per cell will be used to identify a cutoff for total reads
 sequenced that is the hallmark of high quality RNA from a cell. Reads from cells
-passing the quality filter will be aligned to (XXX genome/build) using Rapmap
+passing the quality filter will be aligned to (XXX genome/build) using Rapmap [RapMap: a rapid, sensitive and accurate tool for mapping RNA-seq reads to transcriptomes. (2016). RapMap: a rapid, sensitive and accurate tool for mapping RNA-seq reads to transcriptomes., 32(12), i192–i200. http://doi.org/10.1093/bioinformatics/btw277]
 and counts of reads per transcript per unique UMI will be generated for each
-cell. Reads will also be aligned to (XXX genome/build) using kallisto in
-single-cell mode to generate transcript compatibility counts (TCC) for
+cell. Reads will also be aligned to (XXX genome/build) using kallisto  in
+single-cell mode to generate transcript compatibility counts (TCC) [Fast and accurate single-cell RNA-seq analysis by clustering of transcript-compatibility counts. (2016). Fast and accurate single-cell RNA-seq analysis by clustering of transcript-compatibility counts., 17(1), 112. http://doi.org/10.1186/s13059-016-0970-8]for
 each cell.
 
 Heterogeneity analysis of the UMI disambiguated counts per gene per cell will be
-performed using a combination of the R packages Seurat, SCDE and PAGODA.
+performed using a combination of the R packages Seurat [Spatial reconstruction of single-cell gene expression data. (2015). Spatial reconstruction of single-cell gene expression data., 33(5), 495–502. http://doi.org/10.1038/nbt.3192], SCDE [Bayesian approach to single-cell differential expression analysis. (2014). Bayesian approach to single-cell differential expression analysis.], PAGODA [Characterizing transcriptional heterogeneity through pathway and gene set overdispersion analysis. (2016). Characterizing transcriptional heterogeneity through pathway and gene set overdispersion analysis., 13(3), 241–244. http://doi.org/10.1038/nmeth.3734] and others.
 Briefly, cells will be clustered via PCA or t-SNE and stable groups will be
 identified. These groups will be identified from a training set of samples, and
 the stability of the groups will be confirmed by projecting new samples using
