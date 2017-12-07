@@ -59,8 +59,8 @@ generation and sequencing are suitable for further analysis.
 
 If necessary, adapter sequences, other contaminant sequences such as polyA tails
 and low quality sequences with PHRED quality scores less than five will be
-trimmed from reads using cutadapt
-[Martin, M. 2011. “Cutadapt Removes Adapter Sequences From High-Throughput Sequencing Reads.” EMBnet Journal.].
+trimmed from reads using atropos 
+[https://github.com/jdidion/atropos; 10.5281/zenodo.596588].
 Trimmed reads will be aligned to UCSC build ### of the ## # genome (###),
 augmented with transcript information from Ensembl release ### using STAR
 [Dobin, Alexander, Carrie A Davis, Felix Schlesinger, Jorg Drenkow, Chris Zaleski, Sonali Jha, Philippe Batut, Mark Chaisson, and Thomas R Gingeras. 2013. “STAR: Ultrafast Universal RNA-Seq Aligner..” Bioinformatics (Oxford, England) 29 (1). Oxford University Press: 15–21. doi:10.1093/bioinformatics/bts635.].
