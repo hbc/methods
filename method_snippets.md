@@ -167,25 +167,12 @@ reads will be examined for quality issues using FastQC
 (http://www.bioinformatics.babraham.ac.uk/projects/fastqc/) to ensure library
 generation and sequencing are suitable for further analysis.
 
-Adapter sequences, other contaminant sequences such as polyA tails
-and low quality sequences with PHRED quality scores less than five will be
-trimmed from reads using atropos 
-[https://github.com/jdidion/atropos; 10.5281/zenodo.596588].
+Adapter sequences, other contaminant sequences such as polyA tails and low quality sequences with PHRED quality scores less than five will be trimmed from reads using atropos (Liao, Smyth, and Shi 2014; Patro et al. 2017; Love, Huber, and Anders 2014; Soneson, Love, and Robinson 2015; Didion, Martin, and Collins 2017).
 
-Trimmed reads will be aligned to miRBase v21 [Kozomara A, Griffiths-Jones S. 2014. "miRBase: annotating high confidence microRNAs using deep sequencing data". NAR 2014 42:D68-D73].
+Trimmed reads will be aligned to miRBase v21(Enright et al., n.d.) to the specific species with seqbuster (Lorena Pantano, Estivill, and Martí 2010). As well, they will be aligned to ## # genome (version ##) using STAR (Lorena Pantano, Estivill, and Martí 2010; Dobin et al. 2013). The aligned genomes will be used with seqcluster (Lorena Pantano, Estivill, and Martí 2011) to characterize the whole small RNA transcriptome and classify reads into rRNA, miRNA, repeats, genes, tRNAs and others from USCC annotation (Mangan et al. 2014). Finally, aligned reads were used with miRDeep2 (Mackowiak 2011), an algorithm that assesses the fit of sequenced RNAs to a biological model of miRNA generation and correct folding.
+Alignments will be checked for evenness of coverage, rRNA content, genomic context of alignments (for example, alignments in known transcripts and introns), complexity and other quality checks using a combination of FastQC,  MultiQC  (Ewels et al. 2016) and custom code inside bcbio-nextgen pipeline.
 
-NAR 2014 42:D68-D73) to the specific species with
-seqbuster [Pantano L, Estivill X, Martí E. "SeqBuster is a bioinformatic tool for the processing and analysis of small RNAs datasets, reveals ubiquitous miRNA modifications in human embryonic cells". Nucleic Acids Res. 2010 Mar;38(5):e34.]. As well, they will be aligned to # # genome (version #) using
-STAR [Dobin, Alexander, Carrie A Davis, Felix Schlesinger, Jorg Drenkow, Chris Zaleski, Sonali Jha, Philippe Batut, Mark Chaisson, and Thomas R Gingeras. 2013. “STAR: Ultrafast Universal RNA-Seq Aligner..” Bioinformatics (Oxford, England) 29 (1). Oxford University Press: 15–21. doi:10.1093/bioinformatics/bts635.]. The aligned genomes will be used
-with seqcluster [Pantano L, Friedländer MR, Escaramís G, Lizano E, Pallarès-Albanell J, Ferrer I, Estivill X, Martí E. "Specific small-RNA signatures in the amygdala at premotor and motor stages of Parkinson's disease revealed by deep sequencing analysis". Bioinformatics. 2015 Nov 2] to characterize the whole small RNA transcriptome and classify reads into
-rRNA, miRNA, repeats, genes, tRNAs and others from USCC annotation [[Kuhn, Robert M, David Haussler, and W James Kent. “The UCSC Genome Browser and Associated Tools..” Briefings in Bioinformatics (August 20, 2012).]. Finally, aligned reads will be used with miRDeep2 [Friedländer, Marc R, Sebastian D Mackowiak, Na Li, Wei Chen, and Nikolaus Rajewsky. “miRDeep2 Accurately Identifies Known and Hundreds of Novel microRNA Genes in Seven Animal Clades..” Nucleic Acids Research 40, no. 1 (January 1, 2012): 37–52.], an algorithm that assesses the fit of sequenced RNAs to a biological model of miRNA generation and correct folding.
-
-
-Alignments will be checked for evenness of coverage, rRNA content, genomic
-context of alignments (for example, alignments in known transcripts and
-introns), complexity and other quality checks using a combination of FastQC,
-samtools and 
-MultiQC (https://github.com/ewels/MultiQC) and custom tools.
+Data will be loaded into R with bcbioSmallRna R package (https://github.com/lpantano/bcbioSmallRna) and isomiRs BioC package (Ramos et al. 2017; L. Pantano, Escaramis, and Argyropoulos 2016).
 
 Differential expression at the gene level will be called with DESeq2 [Love, Michael I, Wolfgang Huber, and Simon Anders. 2014. “Moderated Estimation of Fold Change and Dispersion for RNA-Seq Data with DESeq2..” Genome Biology 15 (12): 550. doi:10.1186/PREACCEPT-8897612761307401.], after loading the data with bcbioSmallRna R package [https://github.com/lpantano/bcbioSmallRna] and isomiRs BioC package [Lorena Pantano, . (2016, January 31). isomiRs v0.99.12 (Version v0.99.12). Zenodo. http://doi.org/10.5281/zenodo.45382].
 
