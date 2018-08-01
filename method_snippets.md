@@ -246,3 +246,22 @@ calculating the efficacy of the classifier with that one gene. Differential
 expression between specific groups will be performed using SCDE to account for
 the technical dropouts in single-cell RNA-seq. Pathways differing between each
 group will be performed using PAGODA.
+
+### DGE
+Reads were processed to counts through the bcbio-nextgen single cell/DGE RNA-seq
+analysis pipeline
+(https://bcbio-nextgen.readthedocs.io/en/latest/contents/pipelines.html#single-cell-rna-seq)
+a brief description follows: The well barcode and UMIs were identified for all
+reads and all reads not within one edit distance of a known well barcode were
+discarded. Each surviving read was quasialigned to the transcriptome (GRCh38)
+using RapMap (Srivastava, Avi, Hirak Sarkar, Nitish Gupta, and Rob Patro. 2016.
+“RapMap: A Rapid, Sensitive and Accurate Tool for Mapping RNA-Seq Reads to
+Transcriptomes.” Bioinformatics 32 (12): i192–200.) Reads per well were counted
+using umis (Svensson, Valentine, Kedar Nath Natarajan, Lam-Ha Ly, Ricardo J.
+Miragaia, Charlotte Labalette, Iain C. Macaulay, Ana Cvejic, and Sarah A.
+Teichmann. 2017. “Power Analysis of Single-Cell RNA-Sequencing Experiments.”
+Nature Methods 14 (4): 381–87.), discarding duplicated UMIs, weighting
+multimapped reads by the number of transcripts they aligned to and collapsing
+counts to genes by adding all counts for each transcript of a gene. The R
+package edgeR 3.18.1 (R version 3.2.1) was used for differential expression
+analysis.
