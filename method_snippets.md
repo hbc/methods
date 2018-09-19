@@ -236,16 +236,10 @@ single-cell mode to generate transcript compatibility counts (TCC) [Fast and acc
 each cell.
 
 Heterogeneity analysis of the UMI disambiguated counts per gene per cell will be
-performed using a combination of the R packages Seurat [Spatial reconstruction of single-cell gene expression data. (2015). Spatial reconstruction of single-cell gene expression data., 33(5), 495–502. http://doi.org/10.1038/nbt.3192], SCDE [Bayesian approach to single-cell differential expression analysis. (2014). Bayesian approach to single-cell differential expression analysis.], PAGODA [Characterizing transcriptional heterogeneity through pathway and gene set overdispersion analysis. (2016). Characterizing transcriptional heterogeneity through pathway and gene set overdispersion analysis., 13(3), 241–244. http://doi.org/10.1038/nmeth.3734] and others.
-Briefly, cells will be clustered via PCA or t-SNE and stable groups will be
-identified. These groups will be identified from a training set of samples, and
-the stability of the groups will be confirmed by projecting new samples using
-the weights calculated from the training samples. Marker genes for each stable
-group will be identified by fitting a classifier using each gene alone and
-calculating the efficacy of the classifier with that one gene. Differential
-expression between specific groups will be performed using SCDE to account for
-the technical dropouts in single-cell RNA-seq. Pathways differing between each
-group will be performed using PAGODA.
+performed using the Seurat R package [Spatial reconstruction of single-cell gene expression data. (2015). Spatial reconstruction of single-cell gene expression data., 33(5), 495–502. http://doi.org/10.1038/nbt.3192]. This includes normalization and transformation of the raw gene counts per cell to account for differences in sequencing depth, identification of high variance genes, regression of sources of unwanted variation (e.g. cell cycle phrase), identification of primary sources of heterogeneity using PCA analysis, and clustering of cells based on significant PCs (metagenes). 
+
+Non-linear dimensional reduction using tSNE and UMAP [Etienne Becht, Charles-Antoine Dutertre, Immanuel W.H. Kwok, Lai Guan Ng, Florent Ginhoux, Evan W Newell (2018). Evaluation of UMAP as an alternative to t-SNE for single-cell data. bioRxiv 298430; doi: https://doi.org/10.1101/298430.] will be performed to visualize and explore data. Cluster quality control will be performed to assess possible cluster artifacts (variance correlated with UMI counts, mitochondrial ratio, cell cycle batch effects and any other principle component biases). After assigning clusters using sets of marker genes, differential expression analysis will be performed using zinbwave [Risso D, Perraudeau F, Gribkova S, Dudoit S, Vert J (2018). “A general and flexible method for signal extraction from single-cell RNA-seq data.” Nature Communications, 9, 284. https://doi.org/10.1038/s41467-017-02554-5] and edgeR [Robinson MD, McCarthy DJ, Smyth GK (2010). “edgeR: a Bioconductor package for differential expression analysis of digital gene expression data.” Bioinformatics, 26(1), 139-140].
+
 
 ### DGE
 Reads were processed to counts through the bcbio-nextgen single cell/DGE RNA-seq
